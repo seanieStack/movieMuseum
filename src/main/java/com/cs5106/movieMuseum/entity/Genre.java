@@ -1,4 +1,4 @@
-package com.cs5106.movieMuseum.domain.entity;
+package com.cs5106.movieMuseum.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -9,37 +9,33 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@NoArgsConstructor
 @Getter
 @Setter
-public class Actor {
+@NoArgsConstructor
+public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String firstName;
-    private String lastName;
-    private int age;
+    private String genreName;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "actors", cascade = CascadeType.REMOVE)
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "genres", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private Set<Movie> movies = new HashSet<>();
 
-
-    public Actor(String firstName, String lastName, int age) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
+    public Genre(String genreName) {
+        super();
+        this.genreName = genreName;
     }
 
     public void addMovie(Movie movie) {
         this.movies.add(movie);
-        movie.addActor(this);
+        movie.getGenres().add(this);
     }
 
     public void removeMovie(Movie movie) {
         this.movies.remove(movie);
-        movie.removeActor(this);
+        movie.getGenres().remove(this);
     }
 
 }

@@ -1,8 +1,8 @@
-package com.cs5106.movieMuseum.domain.repository;
+package com.cs5106.movieMuseum.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import com.cs5106.movieMuseum.domain.entity.Genre;
+import com.cs5106.movieMuseum.entity.Genre;
 
 import java.util.List;
 import java.util.Optional;

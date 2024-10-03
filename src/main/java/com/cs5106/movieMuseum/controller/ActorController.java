@@ -1,9 +1,9 @@
-package com.cs5106.movieMuseum.domain.controller;
+package com.cs5106.movieMuseum.controller;
 
-import com.cs5106.movieMuseum.domain.entity.Actor;
-import com.cs5106.movieMuseum.domain.entity.Movie;
-import com.cs5106.movieMuseum.domain.repository.ActorRepository;
-import com.cs5106.movieMuseum.domain.repository.MovieRepository;
+import com.cs5106.movieMuseum.entity.Actor;
+import com.cs5106.movieMuseum.entity.Movie;
+import com.cs5106.movieMuseum.repository.ActorRepository;
+import com.cs5106.movieMuseum.repository.MovieRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;

@@ -1,6 +1,5 @@
-package com.cs5106.movieMuseum.domain.entity;
+package com.cs5106.movieMuseum.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,11 +8,11 @@ import lombok.Setter;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
-@Setter
 @Entity
 @NoArgsConstructor
-public class Director {
+@Getter
+@Setter
+public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -22,12 +21,12 @@ public class Director {
     private String lastName;
     private int age;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "director", fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "actors", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private Set<Movie> movies = new HashSet<>();
 
-    public Director(String firstName, String lastName, int age) {
-        super();
+
+    public Actor(String firstName, String lastName, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -35,17 +34,12 @@ public class Director {
 
     public void addMovie(Movie movie) {
         this.movies.add(movie);
-        movie.setDirector(this);
+        movie.addActor(this);
     }
 
     public void removeMovie(Movie movie) {
         this.movies.remove(movie);
-        movie.setDirector(null);
-    }
-
-    @Override
-    public String toString() {
-        return firstName + " " + lastName;
+        movie.removeActor(this);
     }
 
 }

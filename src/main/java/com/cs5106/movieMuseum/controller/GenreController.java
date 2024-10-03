@@ -1,17 +1,13 @@
-package com.cs5106.movieMuseum.domain.controller;
+package com.cs5106.movieMuseum.controller;
 
-import com.cs5106.movieMuseum.domain.entity.Genre;
-import com.cs5106.movieMuseum.domain.entity.Movie;
-import com.cs5106.movieMuseum.domain.repository.GenreRepository;
-import com.cs5106.movieMuseum.domain.repository.MovieRepository;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import com.cs5106.movieMuseum.entity.Genre;
+import com.cs5106.movieMuseum.entity.Movie;
+import com.cs5106.movieMuseum.repository.GenreRepository;
+import com.cs5106.movieMuseum.repository.MovieRepository;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.swing.text.html.Option;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.List;
 import java.util.Set;

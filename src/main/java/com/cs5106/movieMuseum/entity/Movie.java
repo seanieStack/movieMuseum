@@ -1,7 +1,6 @@
-package com.cs5106.movieMuseum.domain.entity;
+package com.cs5106.movieMuseum.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +23,7 @@ public class Movie {
     private int releaseYear;
     private double imdbRating;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "movie_genre",
         joinColumns = @JoinColumn(name = "movie_id"),
@@ -42,7 +41,7 @@ public class Movie {
         genre.getMovies().remove(this);
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "movie_actor",
             joinColumns = @JoinColumn(name = "movie_id"),
